@@ -22,6 +22,9 @@ Automated tool for scraping job postings into a .xlsx files inspired by [Job Fun
 - [ ] Support Monster
 - [ ] Support Indeed
 - [ ] Support Glassdoor
+- [ ] Support ZipRecruiter
+- [ ] Make Puppeteer configurable using 'config.yaml' file
+- [ ] Add command to generate 'config.yaml' file
 
 ## Contribution
 
