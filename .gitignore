@@ -102,3 +102,21 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Ignore built ts files
+dist/**/*
+
+# ignore yarn.lock
+yarn.lock
+
+# Reports
+report.xls
+
+# Database
+db
+
+# Configuration
+config.yaml
+
+# VSCode
+.vscode
