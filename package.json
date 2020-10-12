@@ -1,0 +1,44 @@
+{
+  "name": "job-funnel",
+  "version": "1.0.0",
+  "description": "Job search automation using Puppeteer.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:alehkot/job-funnel-js.git",
+  "author": "Aleh Kot <kot.oleg@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "npm run clean && && npm run lint && npm run build-ts",
+    "build-ts": "tsc",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "start": "node dist/cli.js",
+    "start-dev": "ts-node src/cli.ts",
+    "clean": "rimraf dist/"
+  },
+  "dependencies": {
+    "commander": "^6.1.0",
+    "csv": "^5.3.2",
+    "exceljs": "^4.1.1",
+    "level-ts": "^2.0.5",
+    "puppeteer": "^5.3.1",
+    "yaml": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/eslint": "^7.2.3",
+    "@types/node": "^14.11.2",
+    "@types/puppeteer": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  },
+  "prepublish": "tsc"
+}

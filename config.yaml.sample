@@ -1,0 +1,8 @@
+crawlers:
+  linkedin:
+    pages:
+      - https://www.linkedin.com/jobs/search/?f_E=4%2C5&f_JT=F&f_TPR=r86400&geoId=103644278&keywords=solution%20architect%20node.js&location=United%20States
+      - https://www.linkedin.com/jobs/search/?f_E=4%2C5&f_JT=F&f_TPR=r86400&geoId=103644278&keywords=node.js&location=United%20States
+    credentials:
+      username: foo@bar.baz
+      password: foobarbaz
