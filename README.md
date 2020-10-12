@@ -1,4 +1,4 @@
-# Job Funnnel JS
+# Job Funnel JS
 
 Automated tool for scraping job postings into a .xlsx files inspired by [Job Funnel](https://github.com/PaulMcInnis/JobFunnel).
 
