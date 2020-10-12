@@ -1,14 +1,12 @@
 "use strict";
 
 import ExcelJS from "exceljs";
+
 import { JobCardResult } from "../interfaces/job-cards";
-
-// import { access } from "fs/promises";
-
 import { db } from "../db";
+import { ExcelRow } from "../interfaces/excel";
 
 export async function exportData(filename: string): Promise<void> {
-  console.log(filename);
   const workbook = new ExcelJS.Workbook();
 
   const sheets = new Map<string, ExcelJS.Worksheet>();
@@ -22,7 +20,7 @@ export async function exportData(filename: string): Promise<void> {
         { header: "Created At", key: "createdAt", width: 10 },
         { header: "Company Name", key: "companyName", width: 32 },
         { header: "Title", key: "title", width: 32 },
-        { header: "Location", key: "location", width: 10 },
+        { header: "Location", key: "location", width: 20 },
         { header: "Job Description", key: "jobDescription", width: 50 },
         { header: "URL", key: "url", width: 10 },
       ];
@@ -34,31 +32,7 @@ export async function exportData(filename: string): Promise<void> {
     await sheet.addRow(mapToExcel(jobCard));
   }
   await workbook.xlsx.writeFile(filename);
-
-  //   workbook.worksheets[]
-
-  //   if (!access(filename)) {
-  //     await workbook.xlsx.readFile(filename);
-  //   } else {
-  //   }
 }
-
-type ExcelRow = {
-  createdAt: Date;
-  source: string;
-  jobId: string;
-  title: string;
-  companyName: string;
-  location: string;
-  jobDescription: string;
-  url: ExcelRowUrl;
-};
-
-type ExcelRowUrl = {
-  text: string;
-  hyperlink: string;
-  tooltip: string;
-};
 
 function mapToExcel(jobCard: JobCardResult): ExcelRow {
   const excelRow: ExcelRow = {

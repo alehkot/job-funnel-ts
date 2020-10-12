@@ -45,7 +45,6 @@ async function processResults(jobCardsPromise: Promise<JobCardResult[]>) {
       await db.put(pk, jobCard);
     }
   }
-  // const results = await scanner.scan(config);
 }
 
 function isValidConfig(data: Record<string, unknown>): boolean {

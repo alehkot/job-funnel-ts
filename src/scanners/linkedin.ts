@@ -27,13 +27,11 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
 
   for (const pageUrl of config.pages) {
     await page.goto(pageUrl);
-    // https://www.linkedin.com/jobs/search/?f_E=4%2C5&f_JT=F&f_TPR=r86400&geoId=103644278&keywords=node.js&location=United%20States
-    // await sleep(3000);
-    // const content = await page.content();
     await sleep(3000);
     const jobCards = await page.evaluate(async () => {
       const data: JobCardResult[] = [];
 
+      // Scroll to the bottom.
       await new Promise((resolve) => {
         let totalHeight = 0;
         const distance = 100;
@@ -49,12 +47,13 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
         }, 1000);
       });
 
+      // Identify all of the job cards in the sidebar.
       const cards = Array.from(document.querySelectorAll("a.result-card__full-card-link"));
 
       for (const card of cards) {
         (card.closest("li") as HTMLElement).click();
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        // TODO: Exceptions handling
+        // TODO: Proper exceptions handling
         try {
           const title = document.querySelector(".details-pane__content h2").textContent.trim();
           const companyName = document
@@ -72,7 +71,6 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
             .replace(/[\n]+/gi, ". ")
             .replace(/[^a-zA-Z0-9!-_. ]/gi, "");
 
-          // const url = window.location.href;
           const jobId = (card.closest("li") as HTMLElement).dataset["id"];
 
           data.push({
