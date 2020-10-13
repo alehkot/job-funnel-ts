@@ -1,13 +1,22 @@
 {
   "name": "job-funnel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Job search automation using Puppeteer.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:alehkot/job-funnel-js.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alehkot/job-funnel-js.git"
+  },
+  "files": [
+    "dist/**/*"
+  ],
   "author": "Aleh Kot <kot.oleg@gmail.com>",
   "license": "MIT",
   "private": false,
+  "bin": {
+    "job-funnel": "./dist/index.js"
+  },
   "scripts": {
     "build": "npm run clean && && npm run lint && npm run build-ts",
     "build-ts": "tsc",
@@ -40,5 +49,8 @@
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   },
-  "prepublish": "tsc"
+  "prepublish": "tsc",
+  "engines": {
+    "node": ">= 12"
+  }
 }
