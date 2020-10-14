@@ -20,7 +20,7 @@
   "scripts": {
     "build": "npm run clean && npm run lint && npm run build-ts",
     "build-ts": "tsc",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix && markdownlint '**/*.md' --ignore node_modules",
     "start": "node dist/cli.js",
     "start-dev": "ts-node src/cli.ts",
     "clean": "rimraf dist/"
@@ -43,6 +43,7 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "markdownlint-cli": "^0.24.0",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.4.1",

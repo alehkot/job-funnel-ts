@@ -1,0 +1,8 @@
+comment: "Markdownlint Rules for Job Funnel JS docs"
+
+#MD024
+no-duplicate-heading: false
+
+#MD013
+line-length:
+  line_length: 120

@@ -12,10 +12,19 @@ Automated tool for scraping job postings into a .xlsx files inspired by [Job Fun
 ## Usage (LinkedIn)
 
 1. Update 'config.yaml' file and specify your LinkedIn credentials
-1. Update 'pages' section in 'config.yaml' files with a list of LinkedIn search pages URLs. You can get a URL by running a search on [LinkedIn Jobs](https://www.linkedin.com/jobs/) page and copying the URL of the results page.
+1. Update 'pages' section in 'config.yaml' files with a list of LinkedIn search pages URLs.
+You can get a URL by running a search on [LinkedIn Jobs](https://www.linkedin.com/jobs/)
+page and copying the URL of the results page.
 1. Use `yarn start-dev scan` to run a crawler
-1. Use `yarn start-dev export` to export results into 'report.xlsx' file (it's possible to run this command any number of times, any subsequent run will just append new results to the database table)
+1. Use `yarn start-dev export` to export results into 'report.xlsx' file
+(it's possible to run this command any number of times, subsequent
+runs will just append new results to the database table)
 1. Use `yarn start-dev wipedb` to wipe the database
+
+### Using NPX
+
+1. An alternate option to run Job Funnel JS is by using NPX: `npx job-funnel` should work the same
+way as described above.
 
 ## Roadmap
 
@@ -28,4 +37,4 @@ Automated tool for scraping job postings into a .xlsx files inspired by [Job Fun
 
 ## Contribution
 
-1. The development in the very early stages, so there might be considerable code changes going forward. Please feel free to fork the project if you want.
+1. The development in the very early stages, so there might be considerable code changes going forward.
