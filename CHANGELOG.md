@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] (2020-10-14)
+
+### Added
+
+- Markdown linter rules
+
 ## [1.0.2] (2020-10-13)
 
 ### Changed
