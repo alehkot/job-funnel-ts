@@ -1,5 +1,3 @@
-"use strict";
-
 import YAML from "yaml";
 import fs from "fs";
 

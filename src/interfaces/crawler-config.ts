@@ -1,5 +1,3 @@
-"use strict";
-
 export type SupportedCrawlers = "linkedin";
 
 export interface CrawlerConfig {
