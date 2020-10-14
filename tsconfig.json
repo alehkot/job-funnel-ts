@@ -10,6 +10,7 @@
     "outDir": "dist",
     "declaration": true,
     "baseUrl": ".",
+    "alwaysStrict": true,
     "paths": {
       "*": [
         "node_modules/*",

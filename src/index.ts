@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-"use strict";
-
 import { program } from "commander";
 import { scan } from "./commands/scan";
 import { exportData } from "./commands/export";

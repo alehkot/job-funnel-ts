@@ -1,5 +1,3 @@
-"use strict";
-
 export type ExcelRow = {
   createdAt: Date;
   source: string;

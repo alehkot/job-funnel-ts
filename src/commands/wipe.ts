@@ -1,5 +1,3 @@
-"use strict";
-
 import { db } from "../db";
 
 export async function wipeData(): Promise<void> {

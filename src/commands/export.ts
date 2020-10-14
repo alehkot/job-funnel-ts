@@ -1,5 +1,3 @@
-"use strict";
-
 import ExcelJS from "exceljs";
 
 import { JobCardResult } from "../interfaces/job-cards";

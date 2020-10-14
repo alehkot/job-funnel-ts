@@ -1,5 +1,3 @@
-"use strict";
-
 export interface JobCardResult {
   createdAt: number;
   source: string;

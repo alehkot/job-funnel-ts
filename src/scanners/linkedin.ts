@@ -1,5 +1,3 @@
-"use strict";
-
 import puppeteer from "puppeteer";
 import { promisify } from "util";
 
