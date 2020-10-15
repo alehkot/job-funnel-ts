@@ -19,7 +19,8 @@ page and copying the URL of the results page.
 1. Use `yarn start-dev export` to export results into 'report.xlsx' file
 (it's possible to run this command any number of times, subsequent
 runs will just append new results to the database table)
-1. Use `yarn start-dev wipedb` to wipe the database
+1. Use `yarn start-dev wipe-db` to wipe the database
+1. Use `yarn start-dev generate-config` to generate a new config file.
 
 ### Using NPX
 
@@ -32,8 +33,8 @@ way as described above.
 - [ ] Support Indeed
 - [ ] Support Glassdoor
 - [ ] Support ZipRecruiter
-- [ ] Make Puppeteer configurable using 'config.yaml' file
-- [ ] Add command to generate 'config.yaml' file
+- [ ] Make Puppeteer configurable using 'config.yml' file
+- [x] Add command to generate 'config.yml' file
 
 ## Contribution
 
