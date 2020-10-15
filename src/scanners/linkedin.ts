@@ -4,6 +4,8 @@ import { promisify } from "util";
 import { CrawlerConfig } from "../interfaces/crawler-config";
 import { JobCardResult } from "../interfaces/job-cards";
 
+const debugMode = process.env.JOB_FUNNEL_DEBUG === "yes";
+
 const sleep = promisify(setTimeout);
 
 const LINKEDIN_EMAIL_SELECTOR = "#username";
@@ -12,7 +14,7 @@ const LINKEDIN_SUBMIT_SELECTOR = "#app__container > main > div > form > div.logi
 const LINKEDIN_LOGIN_URL = "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin";
 
 async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
-  const browser = await puppeteer.launch({ headless: process.env.JOB_FUNNEL_DEBUG === "yes" });
+  const browser = await puppeteer.launch({ headless: !debugMode });
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 1600 });
 
@@ -25,7 +27,8 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
 
   for (const pageUrl of config.pages) {
     await page.goto(pageUrl);
-    await sleep(3000);
+    // Add artificial delay so that actual page urls can be modified on the fly during debugging.
+    await sleep(debugMode ? 20000 : 3000);
     const jobCards = await page.evaluate(async () => {
       const data: JobCardResult[] = [];
 
