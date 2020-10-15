@@ -5,11 +5,14 @@ import { scan } from "./commands/scan";
 import { exportData } from "./commands/export";
 import { wipeData } from "./commands/wipe";
 
-program.version("1.0.0");
-
-program.name("Job Funnel JS");
-
-program.description("Job Funnel JS aggregates jobs openings information from online datasources");
+program
+  .version("1.0.0")
+  .name("Job Funnel JS")
+  .description("Job Funnel JS aggregates jobs openings information from online datasources")
+  .option("-d, --debug", "debug mode")
+  .on("option:debug", function () {
+    process.env.JOB_FUNNEL_DEBUG = "true";
+  });
 
 program
   .command("scan")
@@ -31,7 +34,8 @@ program
 program
   .command("wipedb")
   .description("wipes the database data")
-  .action(() => {
+  .action((options) => {
+    console.log(options);
     wipeData();
   });
 
