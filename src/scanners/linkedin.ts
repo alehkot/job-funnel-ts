@@ -12,7 +12,7 @@ const LINKEDIN_SUBMIT_SELECTOR = "#app__container > main > div > form > div.logi
 const LINKEDIN_LOGIN_URL = "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin";
 
 async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: process.env.JOB_FUNNEL_DEBUG === "yes" });
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 1600 });
 
