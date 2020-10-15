@@ -4,6 +4,7 @@ import { program } from "commander";
 import { scan } from "./commands/scan";
 import { exportData } from "./commands/export";
 import { wipeData } from "./commands/wipe";
+import { generateLocalConfig } from "./commands/generate-config";
 
 program.version("1.0.0");
 
@@ -15,7 +16,7 @@ program
   .command("scan")
   .description("scan job websites")
   .option("-s, --sites <sites...>", "supported sites to scan", "linkedin")
-  .option("-c, --config <file>", "configuration file", "config.yaml")
+  .option("-c, --config <file>", "configuration file", "config.yml")
   .action((cmdObj) => {
     scan(cmdObj.sites, cmdObj.config);
   });
@@ -29,10 +30,17 @@ program
   });
 
 program
-  .command("wipedb")
+  .command("wipe-db")
   .description("wipes the database data")
   .action(() => {
     wipeData();
+  });
+
+program
+  .command("generate-config")
+  .description("generate config.yaml file locally")
+  .action(() => {
+    generateLocalConfig();
   });
 
 program.parse(process.argv);
