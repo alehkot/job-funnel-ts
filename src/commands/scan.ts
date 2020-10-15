@@ -28,7 +28,6 @@ async function scan(sites: string[] | string, configFile: string): Promise<void>
   }
 
   await Promise.all(results);
-  console.log(normSites);
 }
 
 function getjobCardPk(jobCard: JobCardResult): string {
