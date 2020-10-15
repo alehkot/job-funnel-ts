@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] (2020-10-15)
+
+### Added
+
+- Keywords to package.json
+- Artificial crawling delay in 'debug' mode
+- Instructions for 'debug' mode
+
 ## [1.0.3] (2020-10-15)
 
 ### Added

@@ -21,6 +21,8 @@ page and copying the URL of the results page.
 runs will just append new results to the database table)
 1. Use `yarn start-dev wipe-db` to wipe the database
 1. Use `yarn start-dev generate-config` to generate a new config file.
+1. Use `--debug` global flag to disable headless Puppeteer mode and increase artificial crawaling delays,
+for example `yarn start-dev --debug scan`. It's useful for search pages URLs troubleshooting.
 
 ### Using NPX
 
