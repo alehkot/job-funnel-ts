@@ -119,6 +119,7 @@ db
 
 # Configuration
 config.yaml
+config.yml
 
 # VSCode
 .vscode

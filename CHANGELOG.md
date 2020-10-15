@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Markdown linter rules
 - Debug mode
+- Config generation command
 
 ## [1.0.2] (2020-10-13)
 
