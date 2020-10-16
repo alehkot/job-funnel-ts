@@ -1,4 +1,5 @@
 import ExcelJS from "exceljs";
+import { DateTime } from "luxon";
 
 import { JobCardResult } from "../interfaces/job-cards";
 import { db } from "../db";
@@ -34,7 +35,7 @@ export async function exportData(filename: string): Promise<void> {
 
 function mapToExcel(jobCard: JobCardResult): ExcelRow {
   const excelRow: ExcelRow = {
-    createdAt: new Date(jobCard.createdAt),
+    createdAt: DateTime.fromMillis(jobCard.createdAt).toLocal().toLocaleString(),
     source: jobCard.source,
     jobId: `${jobCard.source}-${jobCard.jobId}`,
     title: jobCard.title,

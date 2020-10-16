@@ -7,12 +7,13 @@ import { wipeData } from "./commands/wipe";
 import { generateLocalConfig } from "./commands/generate-config";
 
 program
-  .version("1.0.0")
+  .version("1.0.5")
   .name("Job Funnel JS")
   .description("Job Funnel JS aggregates jobs openings information from online datasources")
   .option("-d, --debug", "debug mode")
   .on("option:debug", function () {
     process.env.JOB_FUNNEL_DEBUG = "true";
+    console.log("Using debug mode");
   });
 
 program
@@ -35,8 +36,7 @@ program
 program
   .command("wipe-db")
   .description("wipes the database data")
-  .action((options) => {
-    console.log(options);
+  .action(() => {
     wipeData();
   });
 
