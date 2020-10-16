@@ -23,7 +23,8 @@
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix && markdownlint '**/*.md' --ignore node_modules",
     "start": "node dist/cli.js",
     "start-dev": "ts-node src/cli.ts",
-    "clean": "rimraf dist/"
+    "clean": "rimraf dist/",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "commander": "^6.1.0",
@@ -52,7 +53,6 @@
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   },
-  "prepublish": "npm run build",
   "keywords": [
     "jobs",
     "crawler",
