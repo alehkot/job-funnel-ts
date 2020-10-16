@@ -1,5 +1,5 @@
 export type ExcelRow = {
-  createdAt: Date;
+  createdAt: string;
   source: string;
   jobId: string;
   title: string;

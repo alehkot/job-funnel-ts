@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] (2020-10-16)
+
+### Changed
+
+- Format dates to locale string in Excel
+- Fix version information in the cli
+
 ## [1.0.4] (2020-10-15)
 
 ### Added
