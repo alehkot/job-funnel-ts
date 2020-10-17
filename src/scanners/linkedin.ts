@@ -4,8 +4,6 @@ import { promisify } from "util";
 import { CrawlerConfig } from "../interfaces/crawler-config";
 import { JobCardResult } from "../interfaces/job-cards";
 
-const debugMode = process.env.JOB_FUNNEL_DEBUG === "yes";
-
 const sleep = promisify(setTimeout);
 
 const LINKEDIN_EMAIL_SELECTOR = "#username";
@@ -14,6 +12,8 @@ const LINKEDIN_SUBMIT_SELECTOR = "#app__container > main > div > form > div.logi
 const LINKEDIN_LOGIN_URL = "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin";
 
 async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
+  const debugMode = process.env.JOB_FUNNEL_DEBUG === "enabled";
+
   const browser = await puppeteer.launch({ headless: !debugMode });
   const page = await browser.newPage();
   await page.setViewport({ width: 1900, height: 1600 });
@@ -25,72 +25,95 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
   await page.keyboard.type(config.credentials.password);
   await page.click(LINKEDIN_SUBMIT_SELECTOR);
 
+  const results: JobCardResult[] = [];
+
   for (const pageUrl of config.pages) {
+    console.log(`Crawling page: ${pageUrl}`);
     await page.goto(pageUrl);
     // Add artificial delay so that actual page urls can be modified on the fly during debugging.
     await sleep(debugMode ? 20000 : 3000);
-    const jobCards = await page.evaluate(async () => {
-      const data: JobCardResult[] = [];
 
-      // Scroll to the bottom.
-      await new Promise((resolve) => {
-        let totalHeight = 0;
-        const distance = 100;
-        const timer = setInterval(() => {
-          const scrollHeight = document.body.scrollHeight;
-          window.scrollBy(0, distance);
-          totalHeight += distance;
+    let jobCards = await page.evaluate(
+      async (pageUrl, debugMode) => {
+        const data: JobCardResult[] = [];
 
-          if (totalHeight >= scrollHeight) {
-            clearInterval(timer);
-            resolve();
+        // Scroll to the bottom.
+        await new Promise((resolve) => {
+          let totalHeight = 0;
+          const distance = 100;
+          const timer = setInterval(() => {
+            const scrollHeight = document.body.scrollHeight;
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+
+            if (totalHeight >= scrollHeight) {
+              clearInterval(timer);
+              resolve();
+            }
+          }, 1000);
+        });
+
+        // Identify all of the job cards in the sidebar.
+        const cards = Array.from(document.querySelectorAll("a.result-card__full-card-link"));
+
+        for (const card of cards) {
+          (card.closest("li") as HTMLElement).click();
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          // TODO: Proper exceptions handling
+          try {
+            const title = document.querySelector(".details-pane__content h2").textContent.trim();
+            const companyName = document
+              .querySelector("a[data-tracking-control-name='public_jobs_topcard_org_name']")
+              .textContent.trim();
+            const location = document
+              .querySelector("a[data-tracking-control-name='public_jobs_topcard_org_name']")
+              .closest("span")
+              .nextSibling.textContent.trim();
+            const jobDescription = (document.querySelector(
+              ".description .show-more-less-html__markup",
+            ) as HTMLElement).innerText
+              .trim()
+              .replace(/^\n{1,}$/gi, "\n")
+              .replace(/[\n]+/gi, ". ")
+              .replace(/[^a-zA-Z0-9!-_. ]/gi, "");
+
+            const jobId = (card.closest("li") as HTMLElement).dataset["id"];
+
+            data.push({
+              createdAt: +new Date(),
+              source: "linkedin",
+              jobId,
+              title,
+              companyName,
+              location,
+              jobDescription,
+              url: `https://www.linkedin.com/jobs/view/${jobId}`,
+              searchPageUrl: pageUrl,
+            });
+          } catch (err) {
+            if (debugMode) {
+              data.push(err.toString());
+            }
           }
-        }, 1000);
+        }
+        return data;
+      },
+      pageUrl,
+      debugMode,
+    );
+    if (debugMode) {
+      jobCards = jobCards.filter((jc) => {
+        if (typeof jc === "string") {
+          console.warn(`Crawling error: ${jc}`);
+          return false;
+        }
+        return true;
       });
-
-      // Identify all of the job cards in the sidebar.
-      const cards = Array.from(document.querySelectorAll("a.result-card__full-card-link"));
-
-      for (const card of cards) {
-        (card.closest("li") as HTMLElement).click();
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        // TODO: Proper exceptions handling
-        try {
-          const title = document.querySelector(".details-pane__content h2").textContent.trim();
-          const companyName = document
-            .querySelector("a[data-tracking-control-name='public_jobs_topcard_org_name']")
-            .textContent.trim();
-          const location = document
-            .querySelector("a[data-tracking-control-name='public_jobs_topcard_org_name']")
-            .closest("span")
-            .nextSibling.textContent.trim();
-          const jobDescription = (document.querySelector(
-            ".description .show-more-less-html__markup",
-          ) as HTMLElement).innerText
-            .trim()
-            .replace(/^\n{1,}$/gi, "\n")
-            .replace(/[\n]+/gi, ". ")
-            .replace(/[^a-zA-Z0-9!-_. ]/gi, "");
-
-          const jobId = (card.closest("li") as HTMLElement).dataset["id"];
-
-          data.push({
-            createdAt: +new Date(),
-            source: "linkedin",
-            jobId,
-            title,
-            companyName,
-            location,
-            jobDescription,
-            url: `https://www.linkedin.com/jobs/view/${jobId}`,
-          });
-        } catch (err) {}
-      }
-      return data;
-    });
-    await browser.close();
-    return jobCards;
+    }
+    results.push(...jobCards);
   }
+  await browser.close();
+  return results;
 }
 
 export default { scan };

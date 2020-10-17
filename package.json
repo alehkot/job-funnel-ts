@@ -1,15 +1,16 @@
 {
   "name": "job-funnel",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Job search automation using Puppeteer.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alehkot/job-funnel-js.git"
+    "url": "https://github.com/alehkot/job-funnel-ts.git"
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "config.yml.sample"
   ],
   "author": "Aleh Kot <kot.oleg@gmail.com>",
   "license": "GPL-3.0-or-later",

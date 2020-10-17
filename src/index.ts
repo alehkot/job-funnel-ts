@@ -7,12 +7,12 @@ import { wipeData } from "./commands/wipe";
 import { generateLocalConfig } from "./commands/generate-config";
 
 program
-  .version("1.0.7")
+  .version("1.0.10")
   .name("Job Funnel JS")
   .description("Job Funnel JS aggregates jobs openings information from online datasources")
   .option("-d, --debug", "debug mode")
   .on("option:debug", function () {
-    process.env.JOB_FUNNEL_DEBUG = "true";
+    process.env.JOB_FUNNEL_DEBUG = "enabled";
     console.log("Using debug mode");
   });
 
@@ -22,7 +22,9 @@ program
   .option("-s, --sites <sites...>", "supported sites to scan", "linkedin")
   .option("-c, --config <file>", "configuration file", "config.yml")
   .action((cmdObj) => {
-    scan(cmdObj.sites, cmdObj.config);
+    scan(cmdObj.sites, cmdObj.config).then(() => {
+      console.log("Done");
+    });
   });
 
 program
@@ -30,21 +32,27 @@ program
   .description("export the collected data to XLSX file (Excel)")
   .option("-f, --filename <filename>", "file name", "report.xlsx")
   .action((cmdObj) => {
-    exportData(cmdObj.filename);
+    exportData(cmdObj.filename).then(() => {
+      console.log("Done");
+    });
   });
 
 program
   .command("wipe-db")
   .description("wipes the database data")
   .action(() => {
-    wipeData();
+    wipeData().then(() => {
+      console.log("Done");
+    });
   });
 
 program
   .command("generate-config")
   .description("generate config.yaml file locally")
   .action(() => {
-    generateLocalConfig();
+    generateLocalConfig().then(() => {
+      console.log("Done");
+    });
   });
 
 program.parse(process.argv);
