@@ -7,4 +7,5 @@ export interface JobCardResult {
   location: string;
   jobDescription: string;
   url: string;
+  searchPageUrl: string;
 }

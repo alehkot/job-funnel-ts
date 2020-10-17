@@ -2,11 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.10] (2020-10-17)
+
+### Added
+
+- Include relevant search pages URLs into a an exported report
+
+### Changed
+
+- Add usage instructions to README.md
+- Rename the project repo to 'job-funnel-ts'
+- Fix multiple pages crawling
+- Fix debug mode handling in LinkedIn crawler
+
 ## [1.0.9] (2020-10-16)
 
 ### Changed
 
-- Fix typo in 'config' file generation.
+- Fix typo in 'config' file generation
 
 ## [1.0.8] (2020-10-16)
 

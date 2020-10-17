@@ -16,12 +16,13 @@ export async function exportData(filename: string): Promise<void> {
       sheet = await workbook.addWorksheet(jobCard.source);
       sheet.columns = [
         { header: "Job Id", key: "jobId", width: 10 },
+        { header: "Search Page URL", key: "searchPageUrl", width: 10 },
         { header: "Created At", key: "createdAt", width: 10 },
         { header: "Company Name", key: "companyName", width: 32 },
         { header: "Title", key: "title", width: 32 },
         { header: "Location", key: "location", width: 20 },
         { header: "Job Description", key: "jobDescription", width: 50 },
-        { header: "URL", key: "url", width: 10 },
+        { header: "Job URL", key: "url", width: 10 },
       ];
       sheets.set(jobCard.source, sheet);
     } else {
@@ -45,7 +46,12 @@ function mapToExcel(jobCard: JobCardResult): ExcelRow {
     url: {
       text: jobCard.url,
       hyperlink: jobCard.url,
-      tooltip: "Visit page",
+      tooltip: "Visit job page",
+    },
+    searchPageUrl: {
+      text: jobCard.searchPageUrl,
+      hyperlink: jobCard.searchPageUrl,
+      tooltip: "Visit job search page url",
     },
   };
 

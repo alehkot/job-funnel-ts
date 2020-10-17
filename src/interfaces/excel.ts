@@ -7,6 +7,7 @@ export type ExcelRow = {
   location: string;
   jobDescription: string;
   url: ExcelRowUrl;
+  searchPageUrl: ExcelRowUrl;
 };
 
 export type ExcelRowUrl = {

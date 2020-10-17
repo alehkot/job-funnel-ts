@@ -5,4 +5,4 @@ no-duplicate-heading: false
 
 #MD013
 line-length:
-  line_length: 120
+  line_length: 400
