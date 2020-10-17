@@ -2,9 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.8] (2020-10-16)
+
+### Changed
+
+- Fix 'config' file generation
+
 ## [1.0.7] (2020-10-16)
 
-### Changes
+### Changed
 
 - Use 'prepublish' script properly
 

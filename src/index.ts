@@ -7,7 +7,7 @@ import { wipeData } from "./commands/wipe";
 import { generateLocalConfig } from "./commands/generate-config";
 
 program
-  .version("1.0.7")
+  .version("1.0.8")
   .name("Job Funnel JS")
   .description("Job Funnel JS aggregates jobs openings information from online datasources")
   .option("-d, --debug", "debug mode")

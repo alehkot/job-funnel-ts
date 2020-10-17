@@ -9,7 +9,8 @@
     "url": "https://github.com/alehkot/job-funnel-js.git"
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "config.yml.sample"
   ],
   "author": "Aleh Kot <kot.oleg@gmail.com>",
   "license": "GPL-3.0-or-later",
