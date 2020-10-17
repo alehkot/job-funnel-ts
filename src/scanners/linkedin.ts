@@ -33,7 +33,7 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
     // Add artificial delay so that actual page urls can be modified on the fly during debugging.
     await sleep(debugMode ? 20000 : 3000);
 
-    let jobCards = await page.evaluate(
+    const jobCards = await page.evaluate(
       async (pageUrl, debugMode) => {
         const data: JobCardResult[] = [];
 
@@ -61,14 +61,15 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
           await new Promise((resolve) => setTimeout(resolve, 1000));
           // TODO: Proper exceptions handling
           try {
+            if (debugMode) console.info("parsing header");
             const title = document.querySelector(".details-pane__content h2").textContent.trim();
-            const companyName = document
-              .querySelector("a[data-tracking-control-name='public_jobs_topcard_org_name']")
-              .textContent.trim();
+            if (debugMode) console.info("parsing company name");
+            const companyName = document.querySelector("h3.topcard__flavor-row .topcard__flavor").textContent.trim();
+            if (debugMode) console.info("parsing company location");
             const location = document
-              .querySelector("a[data-tracking-control-name='public_jobs_topcard_org_name']")
-              .closest("span")
+              .querySelector("h3.topcard__flavor-row .topcard__flavor")
               .nextSibling.textContent.trim();
+            if (debugMode) console.info("parsing job description location");
             const jobDescription = (document.querySelector(
               ".description .show-more-less-html__markup",
             ) as HTMLElement).innerText
@@ -77,6 +78,7 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
               .replace(/[\n]+/gi, ". ")
               .replace(/[^a-zA-Z0-9!-_. ]/gi, "");
 
+            if (debugMode) console.info("parsing job id");
             const jobId = (card.closest("li") as HTMLElement).dataset["id"];
 
             data.push({
@@ -92,7 +94,9 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
             });
           } catch (err) {
             if (debugMode) {
-              data.push(err.toString());
+              console.warn(err);
+              console.log("Waiting for 60 seconds...");
+              await new Promise((resolve) => setTimeout(resolve, 60000));
             }
           }
         }
@@ -101,15 +105,7 @@ async function scan(config: CrawlerConfig): Promise<JobCardResult[]> {
       pageUrl,
       debugMode,
     );
-    if (debugMode) {
-      jobCards = jobCards.filter((jc) => {
-        if (typeof jc === "string") {
-          console.warn(`Crawling error: ${jc}`);
-          return false;
-        }
-        return true;
-      });
-    }
+
     results.push(...jobCards);
   }
   await browser.close();

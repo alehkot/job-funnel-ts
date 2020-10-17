@@ -16,6 +16,20 @@ page and copying the URL of the results page
 1. Run `job-funnel --debug scan` to actually see the crawling process (sometimes useful for troubleshooting)
 1. Run `job-funnel` without any parameters to see help
 
+### Config Example
+
+```yaml
+crawlers:
+  linkedin:
+    pages:
+      - https://www.linkedin.com/jobs/search/?f_E=2%2C3%2C4&f_TPR=r604800&geoId=90000070&keywords=qa%20analyst&location=New%20York%20City%20Metropolitan%20Area&f_TP=1%2C2&redirect=false&position=1&pageNum=0
+      - https://www.linkedin.com/jobs/search/?distance=50&f_E=2%2C3%2C4&f_TPR=r86400&geoId=104047727&keywords=qa%20analyst&location=Jersey%20City%2C%20New%20Jersey%2C%20United%20States&f_TP=1%2C2&redirect=false&position=1&pageNum=0
+      - https://www.linkedin.com/jobs/search?keywords=Qa%20tester&location=New%20York%20City%20Metropolitan%20Area&geoId=90000070&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0
+    credentials:
+      username: foobar@gmail.com
+      password: foobarbaz
+```
+
 ## Development
 
 ### Installation

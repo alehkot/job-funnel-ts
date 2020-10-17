@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.11] (2020-10-17)
+
+### Changed
+
+- Fixed handling of LinkedIn job cards without URLs in companies names
+
 ## [1.0.10] (2020-10-17)
 
 ### Added
