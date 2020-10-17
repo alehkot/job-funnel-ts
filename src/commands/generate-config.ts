@@ -9,6 +9,6 @@ export async function generateLocalConfig(): Promise<void> {
     return;
   } catch {}
 
-  const configTemplatePath = path.join(__dirname, "../../config.yaml.sample");
+  const configTemplatePath = path.join(__dirname, "../../config.yml.sample");
   await copyFile(configTemplatePath, path.join(path.resolve(), "./config.yml"));
 }
