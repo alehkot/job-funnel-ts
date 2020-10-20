@@ -1,6 +1,6 @@
 # Job Funnel TS
 
-Automated tool for scraping job postings into a .xlsx files inspired by [Job Funnel](https://github.com/PaulMcInnis/JobFunnel) and written in Typescript. Currently supports [LinkedIn](https://www.linkedin.com/) and [Monster](https://www.monster.com/) (experimental).
+Automated tool for scraping job postings into a .xlsx files inspired by [Job Funnel](https://github.com/PaulMcInnis/JobFunnel) and written in Typescript. Currently supports [LinkedIn](https://www.linkedin.com/), [Monster](https://www.monster.com/) (experimental), [Glassdoor](https://www.glassdoor.com/) (experimental).
 
 ## Usage
 
@@ -9,13 +9,13 @@ Automated tool for scraping job postings into a .xlsx files inspired by [Job Fun
 1. Generate a new config file in a local folder: `job-funnel generate-config`
 1. Update 'config.yaml' file and specify your credentials
 1. Update 'pages' section in 'config.yaml' files with a list of search pages URLs. You can get a URL by running a search on a supported job website, e.g. [LinkedIn Jobs](https://www.linkedin.com/jobs/) page, and copying the URL of the results page
-1. Run the crawlers: `job-funnel scan`. To run all of the supported crawlers, including experimental, specify them explicitly using '--sites' parameter: `job-funnel scan --sites linkedin monster`
+1. Run the crawlers: `job-funnel scan`. To run all of the supported crawlers, including experimental, specify them explicitly using '--sites' parameter: `job-funnel scan --sites linkedin monster glassdoor`
 1. Export the results to 'report.xlsx' file: `job-funnel export`
 
 ### Optional Steps
 
 1. If needed, run `job-funnel wipe-db` to wipe the cached job results database
-1. Run `job-funnel --debug scan` to see the crawling process. It's useful for troubleshooting sometimes. Use `job-funnel --debug scan --sites linkedin monster` to use all of the available crawlers in debug mode
+1. Run `job-funnel --debug scan` to see the crawling process. It's useful for troubleshooting sometimes. Use `job-funnel --debug scan --sites linkedin monster glassdoor` to use all of the available crawlers in debug mode
 1. Run `job-funnel` without any parameters to see help
 
 ### Config Example
@@ -37,6 +37,12 @@ crawlers:
       radius: 40 # supported values: (empty), 5, 10, 20, 30, 40, 50, 60, 75, 100, 150, 200
       job_status: Full-Time # supported values: (empty), Part-Time
       posted: 1 # supported values: (empty), -1 (any date), 0 (today), 1 (yesterday), 3 (last 3 days), 7 (last 7 days), 14 (last 14 days), 30 (last 30 days)
+    credentials:
+      username: foo@bar.baz
+      password: foobarbaz
+  glassdoor:
+    pages:
+      - https://www.glassdoor.com/Job/jersey-city-qa-analyst-jobs-SRCH_IL.0,11_IC1126819_KO12,22.htm?jobType=fulltime&fromAge=1&radius=50
     credentials:
       username: foo@bar.baz
       password: foobarbaz
