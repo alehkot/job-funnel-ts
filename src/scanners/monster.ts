@@ -68,7 +68,6 @@ async function scan(config: MonsterCrawlerConfig): Promise<JobCardResult[]> {
               .textContent.trim()
               .split(/at|from/i)
               .map((e) => e.trim());
-            console.log(title, companyName);
             if (debugMode) console.info("parsing company location");
             const location = document.querySelector("h2.subtitle").textContent.trim();
             if (debugMode) console.info("parsing job description location");
