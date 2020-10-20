@@ -1,4 +1,4 @@
-export type SupportedCrawlers = "linkedin" | "monster";
+export type SupportedCrawlers = "linkedin" | "monster" | "glassdoor";
 
 export interface CrawlerConfig {
   pages: string[];

@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Experimental Glassdoor support
+
+## [1.0.12] (2020-10-19)
+
+### Added
+
 - Experimental Monster support
 
 ## [1.0.11] (2020-10-17)

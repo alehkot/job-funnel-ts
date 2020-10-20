@@ -3,6 +3,7 @@ import fs from "fs";
 
 import linkedin from "../scanners/linkedin";
 import monster from "../scanners/monster";
+import glassdoor from "../scanners/glassdoor";
 import { ConfigYaml, MonsterCrawlerConfig } from "../interfaces/crawler-config";
 import { JobCardResult } from "../interfaces/job-cards";
 import { db } from "../db";
@@ -28,6 +29,9 @@ async function scan(sites: string[] | string, configFile: string): Promise<void>
     }
     if (site === "monster") {
       results.push(processResults(monster.scan(config.crawlers.monster as MonsterCrawlerConfig)));
+    }
+    if (site === "glassdoor") {
+      results.push(processResults(glassdoor.scan(config.crawlers.glassdoor)));
     }
   }
 

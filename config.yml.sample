@@ -16,3 +16,9 @@ crawlers:
     credentials:
       username: foo@bar.baz
       password: foobarbaz
+  glassdoor:
+    pages:
+      - https://www.glassdoor.com/Job/jersey-city-qa-analyst-jobs-SRCH_IL.0,11_IC1126819_KO12,22.htm?jobType=fulltime&fromAge=1&radius=50
+    credentials:
+      username: foo@bar.baz
+      password: foobarbaz
