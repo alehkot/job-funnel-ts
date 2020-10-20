@@ -6,3 +6,13 @@ crawlers:
     credentials:
       username: foo@bar.baz
       password: foobarbaz
+  monster:
+    pages:
+      - https://www.monster.com/jobs/search/Full-Time_8?q=qa-analyst&where=07302&rad=20&tm=3&jobid=220754835
+    filters:
+      radius: 40 # supported values: (empty), 5, 10, 20, 30, 40, 50, 60, 75, 100, 150, 200
+      job_status: Full-Time # supported values: (empty), Part-Time
+      posted: 1 # supported values: (empty), -1 (any date), 0 (today), 1 (yesterday), 3 (last 3 days), 7 (last 7 days), 14 (last 14 days), 30 (last 30 days)
+    credentials:
+      username: foo@bar.baz
+      password: foobarbaz

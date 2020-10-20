@@ -2,7 +2,8 @@ import YAML from "yaml";
 import fs from "fs";
 
 import linkedin from "../scanners/linkedin";
-import { ConfigYaml } from "../interfaces/crawler-config";
+import monster from "../scanners/monster";
+import { ConfigYaml, MonsterCrawlerConfig } from "../interfaces/crawler-config";
 import { JobCardResult } from "../interfaces/job-cards";
 import { db } from "../db";
 
@@ -24,6 +25,9 @@ async function scan(sites: string[] | string, configFile: string): Promise<void>
   for (const site of normSites) {
     if (site === "linkedin") {
       results.push(processResults(linkedin.scan(config.crawlers.linkedin)));
+    }
+    if (site === "monster") {
+      results.push(processResults(monster.scan(config.crawlers.monster as MonsterCrawlerConfig)));
     }
   }
 
