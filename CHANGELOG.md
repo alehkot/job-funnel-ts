@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.12] (2020-10-19)
+
+### Added
+
+- Experimental Monster support
+
 ## [1.0.11] (2020-10-17)
 
 ### Changed
