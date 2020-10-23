@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.12] (2020-10-19)
+## [1.0.14] (2020-10-22)
+
+### Added
+
+- Experimental Indeed support
+
+## [1.0.13] (2020-10-19)
 
 ### Added
 

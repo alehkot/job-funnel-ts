@@ -22,3 +22,9 @@ crawlers:
     credentials:
       username: foo@bar.baz
       password: foobarbaz
+  indeed:
+    pages:
+      - https://www.indeed.com/jobs?q=QA%20Analyst&l=Jersey%20City%2C%20NJ&radius=50&rbl=New%20York%2C%20NY&jlid=45f6c4ded55c00bf&jt=fulltime&vjk=a573133dd9847a53
+    credentials:
+      username: foo@bar.baz
+      password: foobarbaz

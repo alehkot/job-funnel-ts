@@ -4,6 +4,7 @@ import fs from "fs";
 import linkedin from "../scanners/linkedin";
 import monster from "../scanners/monster";
 import glassdoor from "../scanners/glassdoor";
+import indeed from "../scanners/indeed";
 import { ConfigYaml, MonsterCrawlerConfig } from "../interfaces/crawler-config";
 import { JobCardResult } from "../interfaces/job-cards";
 import { db } from "../db";
@@ -24,15 +25,26 @@ async function scan(sites: string[] | string, configFile: string): Promise<void>
 
   const results = [];
   for (const site of normSites) {
-    if (site === "linkedin") {
-      results.push(processResults(linkedin.scan(config.crawlers.linkedin)));
+    let resultsPromises: Promise<JobCardResult[]>;
+
+    switch (site) {
+      case "linkedin":
+        resultsPromises = linkedin.scan(config.crawlers.linkedin);
+        break;
+      case "monster":
+        resultsPromises = monster.scan(config.crawlers.monster as MonsterCrawlerConfig);
+        break;
+      case "glassdoor":
+        resultsPromises = glassdoor.scan(config.crawlers.glassdoor);
+        break;
+      case "indeed":
+        resultsPromises = indeed.scan(config.crawlers.indeed);
+        break;
+      default:
+        throw new Error("Unsupported crawler");
     }
-    if (site === "monster") {
-      results.push(processResults(monster.scan(config.crawlers.monster as MonsterCrawlerConfig)));
-    }
-    if (site === "glassdoor") {
-      results.push(processResults(glassdoor.scan(config.crawlers.glassdoor)));
-    }
+
+    results.push(processResults(resultsPromises));
   }
 
   await Promise.all(results);
