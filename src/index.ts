@@ -7,7 +7,7 @@ import { wipeData } from "./commands/wipe";
 import { generateLocalConfig } from "./commands/generate-config";
 
 program
-  .version("1.0.13")
+  .version("1.0.14")
   .name("Job Funnel JS")
   .description("Job Funnel JS aggregates jobs openings information from online datasources")
   .option("-d, --debug", "debug mode")
@@ -19,7 +19,11 @@ program
 program
   .command("scan")
   .description("scan job websites")
-  .option("-s, --sites <sites...>", "supported sites to scan", "linkedin")
+  .option(
+    "-s, --sites <sites...>",
+    "supported sites to scan (options: linkedin, glassdoor, indeed, monster)",
+    "linkedin",
+  )
   .option("-c, --config <file>", "configuration file", "config.yml")
   .action((cmdObj) => {
     scan(cmdObj.sites, cmdObj.config).then(() => {
