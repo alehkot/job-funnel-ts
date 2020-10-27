@@ -9,14 +9,14 @@
     "url": "https://github.com/alehkot/job-funnel-ts.git"
   },
   "files": [
-    "dist/src/**/*",
+    "dist/**/*",
     "config.yml.sample"
   ],
   "author": "Aleh Kot <kot.oleg@gmail.com>",
   "license": "GPL-3.0-or-later",
   "private": false,
   "bin": {
-    "job-funnel": "./dist/src/index.js"
+    "job-funnel": "./dist/index.js"
   },
   "scripts": {
     "build": "npm run clean && npm run lint && npm run build-ts",
