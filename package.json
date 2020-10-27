@@ -16,7 +16,7 @@
   "license": "GPL-3.0-or-later",
   "private": false,
   "bin": {
-    "job-funnel": "./dist/index.js"
+    "job-funnel": "./dist/src/index.js"
   },
   "scripts": {
     "build": "npm run clean && npm run lint && npm run build-ts",
