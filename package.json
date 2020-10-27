@@ -9,7 +9,7 @@
     "url": "https://github.com/alehkot/job-funnel-ts.git"
   },
   "files": [
-    "dist/**/*",
+    "dist/src/**/*",
     "config.yml.sample"
   ],
   "author": "Aleh Kot <kot.oleg@gmail.com>",
@@ -61,6 +61,6 @@
     "cli"
   ],
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14"
   }
 }
