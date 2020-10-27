@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.15] (2020-10-26)
+
+### Changed
+
+- Switch to NPM
+- Fix typos in README.md
+
 ## [1.0.14] (2020-10-22)
 
 ### Added

@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2020",
+    "resolveJsonModule": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
