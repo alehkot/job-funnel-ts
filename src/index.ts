@@ -5,9 +5,10 @@ import { scan } from "./commands/scan";
 import { exportData } from "./commands/export";
 import { wipeData } from "./commands/wipe";
 import { generateLocalConfig } from "./commands/generate-config";
+import { version } from "../package.json";
 
 program
-  .version("1.0.14")
+  .version(version)
   .name("Job Funnel JS")
   .description("Job Funnel JS aggregates jobs openings information from online datasources")
   .option("-d, --debug", "debug mode")

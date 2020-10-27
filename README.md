@@ -4,8 +4,8 @@ Automated tool for scraping job postings into a .xlsx files inspired by [Job Fun
 
 ## Usage
 
-1. Ensure that you have Node 12.x+ installed and Yarn package manager available globally
-1. Install Job Funnel as a global package: `yarn global add job-funnel`
+1. Ensure that you have Node 14.x+ installed and available globally
+1. Install Job Funnel as a global package: `npm install -g job-funnel`
 1. Generate a new config file in a local folder: `job-funnel generate-config`
 1. Update 'config.yaml' file and specify your credentials
 1. Update 'pages' section in 'config.yaml' files with a list of search pages URLs. You can get a URL by running a search on a supported job website, e.g. [LinkedIn Jobs](https://www.linkedin.com/jobs/) page, and copying the URL of the results page
@@ -58,22 +58,22 @@ crawlers:
 
 ### Installation
 
-1. Ensure that you have Node 12.x+ installed and Yarn package manager available globally
+1. Ensure that you have Node 14.x+ installed and available globally
 1. Clone the repository: `git clone https://github.com/alehkot/job-funnel-ts.git`
-1. Run `yarn install`
+1. Run `npm install`
 1. Run `cp config.yaml.sample config.yaml` to create your configuration file
 
 ## Running the crawlers
 
 1. Update 'config.yaml' file and specify your credentials
 1. Update 'pages' section in 'config.yaml' files with a list of search pages URLs. You can get a URL by running a search on a supported website copying the URL of the results page
-1. Use `yarn start-dev scan` to run a crawler
-1. Use `yarn start-dev export` to export results into 'report.xlsx' file
+1. Use `npm run start-dev -- scan` to run a crawler
+1. Use `npm run start-dev -- export` to export results into 'report.xlsx' file
 (it's possible to run this command any number of times, subsequent
 runs will just append new results to the database table)
-1. Use `yarn start-dev wipe-db` to wipe the database
-1. Use `yarn start-dev generate-config` to generate a new config file
-1. Use `--debug` global flag to disable headless Puppeteer mode and increase artificial crawling delays, for example `yarn start-dev --debug scan`
+1. Use `npm run start-dev -- wipe-db` to wipe the database
+1. Use `npm run start-dev -- generate-config` to generate a new config file
+1. Use `--debug` global flag to disable headless Puppeteer mode and increase artificial crawling delays, for example `npm run start-dev -- --debug scan`
 
 ## Notes
 
