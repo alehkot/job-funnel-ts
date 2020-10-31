@@ -2,15 +2,18 @@ import ExcelJS from "exceljs";
 import { DateTime } from "luxon";
 
 import { JobCardResult } from "../interfaces/job-cards";
-import { db } from "../db";
+import { getDb } from "../db";
 import { ExcelRow } from "../interfaces/excel";
 
 export async function exportData(filename: string): Promise<void> {
+  const db = await getDb();
+  const items = await db.getAll();
+
   const workbook = new ExcelJS.Workbook();
 
   const sheets = new Map<string, ExcelJS.Worksheet>();
-  for await (const item of db.iterate()) {
-    const jobCard: JobCardResult = item.value;
+  for (const item of items) {
+    const jobCard: JobCardResult = { ...item, createdAt: +new Date(item.createdAt) };
     let sheet;
     if (!sheets.has(jobCard.source)) {
       sheet = await workbook.addWorksheet(jobCard.source);

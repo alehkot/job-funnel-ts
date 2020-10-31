@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.19] (2020-10-30)
+
+### Added
+
+- Migrate to SQLite
+
+### Changed
+
+- Automatically set CLI version
+- Fix typos in documentation
+
 ## [1.0.17 - 1.0.18] (2020-10-26)
 
 ### Changed
