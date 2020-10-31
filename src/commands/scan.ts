@@ -7,7 +7,7 @@ import glassdoor from "../scanners/glassdoor";
 import indeed from "../scanners/indeed";
 import { ConfigYaml, MonsterCrawlerConfig } from "../interfaces/crawler-config";
 import { JobCardResult } from "../interfaces/job-cards";
-import { db } from "../db";
+import { getDb } from "../db";
 
 async function scan(sites: string[] | string, configFile: string): Promise<void> {
   let config: ConfigYaml;
@@ -55,11 +55,12 @@ function getjobCardPk(jobCard: JobCardResult): string {
 }
 
 async function processResults(jobCardsPromise: Promise<JobCardResult[]>) {
+  const db = await getDb();
   const jobCards = await jobCardsPromise;
   for (const jobCard of jobCards) {
     const pk = getjobCardPk(jobCard);
     if (!(await db.exists(pk))) {
-      await db.put(pk, jobCard);
+      await db.insertRow({ id: pk, ...jobCard, createdAt: new Date(jobCard.createdAt).toUTCString() });
     }
   }
 }

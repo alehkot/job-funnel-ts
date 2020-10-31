@@ -116,6 +116,7 @@ report.xlsx
 
 # Database
 db
+job-funnel.db
 
 # Configuration
 config.yaml

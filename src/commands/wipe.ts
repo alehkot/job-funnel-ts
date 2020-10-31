@@ -1,7 +1,6 @@
-import { db } from "../db";
+import { getDb } from "../db";
 
 export async function wipeData(): Promise<void> {
-  for await (const item of db.iterate()) {
-    await db.del(item.key);
-  }
+  const db = await getDb();
+  await db.wipeData();
 }
