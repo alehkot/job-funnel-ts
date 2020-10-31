@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.21] (2020-10-31)
+
+### Changed
+
+- Stabilize Typescript compilation using Babel
+
 ## [1.0.20] (2020-10-31)
 
 ### Changed
