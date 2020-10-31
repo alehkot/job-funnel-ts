@@ -1,10 +1,6 @@
 {
     "presets": [
-        "@babel/env",
+        "latest-node",
         "@babel/typescript"
-    ],
-    "plugins": [
-        "@babel/proposal-class-properties",
-        "@babel/proposal-object-rest-spread"
     ]
 }
