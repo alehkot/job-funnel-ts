@@ -1,6 +1,6 @@
 {
   "name": "job-funnel",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Job search automation using Puppeteer.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
