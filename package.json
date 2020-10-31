@@ -19,8 +19,9 @@
     "job-funnel": "./dist/index.js"
   },
   "scripts": {
-    "build": "npm run clean && npm run lint && npm run build-ts",
-    "build-ts": "tsc",
+    "build": "npm run clean && npm run lint && npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline --copy-files",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix && markdownlint '**/*.md' --ignore node_modules",
     "start": "node dist/index.js",
     "start-dev": "ts-node src/index.ts",
@@ -38,6 +39,11 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
     "@types/commander": "^2.12.2",
     "@types/eslint": "^7.2.3",
     "@types/luxon": "^1.25.0",
